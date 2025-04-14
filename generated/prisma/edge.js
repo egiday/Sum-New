@@ -158,7 +158,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -167,8 +166,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Poll {\n  id        String   @id @default(uuid())\n  question  String\n  options   String[]\n  createdAt DateTime @default(now())\n  votes     Vote[]\n}\n\nmodel Vote {\n  id             String   @id @default(uuid())\n  pollId         String\n  selectedOption String\n  votedAt        DateTime @default(now())\n  poll           Poll     @relation(fields: [pollId], references: [id])\n}\n",
-  "inlineSchemaHash": "89244ae29ef9679906fa6d4b92758249b7b7975fb397951d735704cd9f84dc7f",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nmodel Poll {\n  id        String   @id @default(uuid())\n  question  String\n  options   String[]\n  createdAt DateTime @default(now())\n  votes     Vote[]\n}\n\nmodel Vote {\n  id             String   @id @default(uuid())\n  pollId         String\n  selectedOption String\n  votedAt        DateTime @default(now())\n  poll           Poll     @relation(fields: [pollId], references: [id])\n}\n",
+  "inlineSchemaHash": "cc1f083589f7e317be260688251d4e31f99ad7b68f19083814e00a3d802b1a34",
   "copyEngine": true
 }
 config.dirname = '/'
