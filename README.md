@@ -2,7 +2,7 @@
 
 FastPoll is a modern, elegant polling application designed for quick group decisions with an Apple-inspired interface. Create gorgeous polls and share them with anyone - no sign-up required!
 
-![FastPoll]([https://placekitten.com/1200/630](https://quickgrouppoll.vercel.app/)
+[FastPoll](https://quickgrouppoll.vercel.app/)
 
 ## Features
 
@@ -45,19 +45,19 @@ FastPoll is a modern, elegant polling application designed for quick group decis
 
 ### Home Page
 
-![Home Page](https://placekitten.com/800/450)
+![Home Page](https://imgur.com/w8xWjbB)
 
 ### Poll Creation
 
-![Poll Creation](https://placekitten.com/800/451)
+![Poll Creation](https://imgur.com/DYqhUDY)
 
 ### Voting Interface
 
-![Voting Interface](https://placekitten.com/800/452)
+![Voting Interface](https://imgur.com/undefined)
 
 ### Results View
 
-![Results View](https://placekitten.com/800/453)
+![Results View](https://imgur.com/xk72hOQ)
 
 ## Local Development Setup
 
