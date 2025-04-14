@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 import { PollResults } from '@/lib/types';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/prisma';
 
 export async function GET(
   request: Request,
@@ -27,10 +25,10 @@ export async function GET(
     }
 
     // Calculate vote counts for each option
-    const voteCounts = poll.options.reduce((acc, option) => {
-      acc[option] = poll.votes.filter(vote => vote.selectedOption === option).length;
+    const voteCounts = poll.options.reduce((acc: Record<string, number>, option: string) => {
+      acc[option] = poll.votes.filter((vote: { selectedOption: string }) => vote.selectedOption === option).length;
       return acc;
-    }, {} as Record<string, number>);
+    }, {});
 
     const response: PollResults = {
       question: poll.question,

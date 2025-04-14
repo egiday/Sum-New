@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import { CreatePollRequest, CreatePollResponse } from '@/lib/types';
-
-const prisma = new PrismaClient();
+import { nanoid } from 'nanoid';
 
 export async function POST(request: Request) {
   try {
