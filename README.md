@@ -41,23 +41,23 @@ FastPoll is a modern, elegant polling application designed for quick group decis
   - Prisma ORM
   - PostgreSQL database
 
-## Screenshots
+## Screenshots (Imgur images)
 
 ### Home Page
 
-![Home Page](https://imgur.com/w8xWjbB)
+[Home Page](https://imgur.com/w8xWjbB)
 
 ### Poll Creation
 
-![Poll Creation](https://imgur.com/DYqhUDY)
+[Poll Creation](https://imgur.com/DYqhUDY)
 
 ### Voting Interface
 
-![Voting Interface](https://imgur.com/undefined)
+[Voting Interface](https://imgur.com/undefined)
 
 ### Results View
 
-![Results View](https://imgur.com/xk72hOQ)
+[Results View](https://imgur.com/xk72hOQ)
 
 ## Local Development Setup
 
