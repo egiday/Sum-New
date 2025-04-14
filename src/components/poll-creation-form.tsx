@@ -76,14 +76,14 @@ export function PollCreationForm() {
   }
 
   return (
-    <Card className="w-full max-w-2xl shadow-lg border-neutral-200/70 dark:border-neutral-800/70">
+    <Card className="w-full max-w-2xl shadow-lg border-neutral-200/70">
       <CardHeader className="pb-4">
-        <CardTitle className="text-xl sm:text-2xl text-center font-semibold text-gray-800 dark:text-gray-200">Create a New Poll</CardTitle>
+        <CardTitle className="text-xl sm:text-2xl text-center font-semibold text-gray-800">Create a New Poll</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6" id="poll-creation-form">
           <div className="space-y-2">
-            <label htmlFor="question" className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label htmlFor="question" className="block text-sm font-semibold text-gray-700">
               Question
             </label>
             <Input
@@ -91,14 +91,14 @@ export function PollCreationForm() {
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder="e.g., Where should we go for lunch?"
-              className="text-base dark:bg-neutral-800 dark:border-neutral-700 dark:text-gray-100 focus:ring-indigo-500 focus:border-indigo-500 dark:focus:ring-indigo-600 dark:focus:border-indigo-600"
+              className="text-base focus:ring-indigo-500 focus:border-indigo-500"
               required
               aria-describedby="question-error"
             />
           </div>
 
           <div className="space-y-4">
-            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+            <label className="block text-sm font-semibold text-gray-700">
               Options
             </label>
             <div className="space-y-3">
@@ -108,7 +108,7 @@ export function PollCreationForm() {
                     value={option}
                     onChange={(e) => handleOptionChange(index, e.target.value)}
                     placeholder={`Option ${index + 1}`}
-                    className="text-base dark:bg-neutral-800 dark:border-neutral-700 dark:text-gray-100 focus:ring-indigo-500 focus:border-indigo-500 dark:focus:ring-indigo-600 dark:focus:border-indigo-600"
+                    className="text-base focus:ring-indigo-500 focus:border-indigo-500"
                     required={index < 2}
                     aria-label={`Poll option ${index + 1}`}
                   />
@@ -118,7 +118,7 @@ export function PollCreationForm() {
                       variant="ghost"
                       size="icon"
                       onClick={() => removeOption(index)}
-                      className="shrink-0 text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-500 transition-colors"
+                      className="shrink-0 text-gray-500 hover:text-red-600 transition-colors"
                       aria-label={`Remove option ${index + 1}`}
                     >
                       <Trash2 className="h-4 w-4" />
@@ -131,7 +131,7 @@ export function PollCreationForm() {
               type="button"
               variant="outline"
               onClick={addOption}
-              className="w-full gap-2 text-gray-700 border-gray-300 hover:bg-gray-50 dark:text-gray-300 dark:border-neutral-700 dark:hover:bg-neutral-800 transition-colors"
+              className="w-full gap-2 text-gray-700 border-gray-300 hover:bg-gray-50 transition-colors"
             >
               <Plus className="h-4 w-4" />
               Add Option
@@ -139,7 +139,7 @@ export function PollCreationForm() {
           </div>
 
           {error && (
-            <div id="question-error" role="alert" className="text-red-700 dark:text-red-400 bg-red-100 dark:bg-red-900/30 p-3 rounded-md text-sm font-medium border border-red-200 dark:border-red-800/50">
+            <div id="question-error" role="alert" className="text-red-700 bg-red-100 p-3 rounded-md text-sm font-medium border border-red-200">
               {error}
             </div>
           )}
@@ -149,7 +149,7 @@ export function PollCreationForm() {
         <Button
           type="submit"
           form="poll-creation-form"
-          className="w-full text-base font-semibold py-3 px-6 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 dark:focus-visible:ring-indigo-400 dark:focus-visible:ring-offset-neutral-900"
+          className="w-full text-base font-semibold py-3 px-6 bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Creating...' : 'Create Poll & Get Link'}
