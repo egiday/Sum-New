@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from "@/components/theme-provider"
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'FastPoll | Fast, Simple, Beautiful Polling',
@@ -14,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="font-sans antialiased">
+      <body className={`${inter.className} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

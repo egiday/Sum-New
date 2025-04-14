@@ -121,9 +121,9 @@
   .animated-gradient {
     background: linear-gradient(
       120deg,
-      rgba(var(--primary), 0.8),
-      rgba(var(--chart-2), 0.7),
-      rgba(var(--chart-3), 0.8)
+      rgb(var(--primary) / 0.8),
+      rgb(var(--chart-2) / 0.7),
+      rgb(var(--chart-3) / 0.8)
     );
     background-size: 200% 200%;
     animation: gradientAnimation 15s ease infinite;
