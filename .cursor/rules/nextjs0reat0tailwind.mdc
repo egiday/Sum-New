@@ -12,13 +12,6 @@ alwaysApply: true
 
 ## Workflow & Checklist Integration  
 
-- **Checklist Adherence (FastPoll MVP):** You will be given tasks corresponding to specific item numbers from the "FastPoll MVP - Development Checklist". Please adhere to the following workflow:  
-    1.  Focus *only* on the single checklist item requested.  
-    2.  Implement the requested checklist item according to all the other rules specified in this document.  
-    3.  **Crucially: After providing the code or completing the task for that single item, explicitly state which checklist item number and description you believe you have just completed.** (e.g., "Completed: `[ ] 1.4: Implement API Endpoint - Create Poll`").  
-    4.  Await confirmation or the next checklist item instruction. **Do not** proceed to the next item on the checklist until explicitly asked to do so. 
-    5.  the checklist is [Checklist.txt](mdc:Checklist.txt) 
-    6.  when done with task return to checklist and cross off
 
 ## Code Style and Structure  
 

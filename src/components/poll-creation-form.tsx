@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
-import { Plus, Trash2 } from 'lucide-react'
+import { Plus, Trash2, Loader2, Sparkles } from 'lucide-react'
 
 export function PollCreationForm() {
   const router = useRouter()
@@ -79,18 +79,19 @@ export function PollCreationForm() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="w-full"
     >
-      <Card className="w-full max-w-2xl shadow-xl border-neutral-200/60 bg-white/80 backdrop-blur-sm">
-        <CardHeader className="pb-4">
-          <CardTitle className="text-xl sm:text-2xl text-center font-semibold text-gray-800">Create a New Poll</CardTitle>
+      <Card glass className="w-full overflow-hidden border-[0.5px] shadow-xl">
+        <CardHeader className="pb-4 pt-6 px-6">
+          <CardTitle className="text-xl sm:text-2xl text-center font-medium">Create a New Poll</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-2 pb-6 px-6">
           <form onSubmit={handleSubmit} className="space-y-6" id="poll-creation-form">
             <div className="space-y-2">
-              <Label htmlFor="question" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="question" className="text-sm font-medium text-foreground/80">
                 Question
               </Label>
               <Input
@@ -98,14 +99,14 @@ export function PollCreationForm() {
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
                 placeholder="e.g., Where should we go for lunch?"
-                className="text-base"
+                className="text-base rounded-xl border-input/50 bg-card/50 backdrop-blur-sm focus:ring-2 focus:ring-primary/40 transition-all"
                 required
                 aria-describedby="question-error"
               />
             </div>
 
             <div className="space-y-4">
-              <Label className="block text-sm font-medium text-gray-700 mb-2">
+              <Label className="block text-sm font-medium text-foreground/80 mb-2">
                 Options
               </Label>
               <div className="space-y-3">
@@ -116,15 +117,15 @@ export function PollCreationForm() {
                       layout
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, x: -20, transition: { duration: 0.2 } }}
-                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       className="flex gap-3 items-center"
                     >
                       <Input
                         value={option}
                         onChange={(e) => handleOptionChange(index, e.target.value)}
                         placeholder={`Option ${index + 1}`}
-                        className="text-base flex-grow"
+                        className="text-base flex-grow rounded-xl border-input/50 bg-card/50 backdrop-blur-sm focus:ring-2 focus:ring-primary/40 transition-all"
                         required={index < 2}
                         aria-label={`Poll option ${index + 1}`}
                       />
@@ -135,7 +136,7 @@ export function PollCreationForm() {
                             variant="ghost"
                             size="icon"
                             onClick={() => removeOption(index)}
-                            className="shrink-0 text-muted-foreground hover:text-destructive transition-colors"
+                            className="shrink-0 text-muted-foreground hover:text-destructive/80 transition-colors h-10 w-10 rounded-xl"
                             aria-label={`Remove option ${index + 1}`}
                           >
                             <Trash2 className="h-4 w-4" />
@@ -150,7 +151,7 @@ export function PollCreationForm() {
                 type="button"
                 variant="outline"
                 onClick={addOption}
-                className="w-full gap-2 text-muted-foreground border-dashed hover:border-solid hover:bg-accent hover:text-accent-foreground transition-all"
+                className="w-full gap-2 border-dashed rounded-xl h-11"
                 size="sm"
               >
                 <Plus className="h-4 w-4" />
@@ -159,22 +160,41 @@ export function PollCreationForm() {
             </div>
 
             {error && (
-              <div id="question-error" role="alert" className="text-destructive-foreground bg-destructive p-3 rounded-md text-sm font-medium border border-destructive/50">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                id="question-error"
+                role="alert"
+                className="text-destructive-foreground bg-destructive/10 border border-destructive/20 p-4 rounded-xl text-sm font-medium"
+              >
                 {error}
-              </div>
+              </motion.div>
             )}
           </form>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="pt-0 pb-6 px-6 flex flex-col">
           <Button
             type="submit"
             form="poll-creation-form"
-            className="w-full text-base font-semibold py-3"
+            className="w-full text-base font-medium py-3 h-12"
             size="lg"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Creating Poll...' : 'Create Poll & Get Link'}
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Creating Poll...
+              </>
+            ) : (
+              <>
+                <Sparkles className="mr-2 h-4 w-4" />
+                Create Poll & Get Link
+              </>
+            )}
           </Button>
+          <p className="text-xs text-center text-muted-foreground/60 mt-4">
+            No account needed. Your poll will be available instantly.
+          </p>
         </CardFooter>
       </Card>
     </motion.div>
