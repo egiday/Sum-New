@@ -101,7 +101,7 @@ export function VotingForm({ pollId }: VotingFormProps) {
   if (error) {
     return (
       <Card className="p-4 sm:p-6">
-        <div className="text-center text-red-500 bg-red-50 p-3 rounded-md">{error}</div>
+        <div className="text-center text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30 p-3 rounded-md">{error}</div>
       </Card>
     )
   }
@@ -109,7 +109,7 @@ export function VotingForm({ pollId }: VotingFormProps) {
   if (!pollData) {
     return (
       <Card className="p-4 sm:p-6">
-        <div className="flex items-center justify-center gap-2 text-gray-500">
+        <div className="flex items-center justify-center gap-2 text-gray-500 dark:text-gray-400">
           <Loader2 className="h-4 w-4 animate-spin" />
           <span>Loading poll...</span>
         </div>
@@ -122,13 +122,13 @@ export function VotingForm({ pollId }: VotingFormProps) {
       <Card className="p-4 sm:p-6">
         <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{pollData.question}</h2>
         <div className="space-y-4">
-          <div className="flex items-center justify-center gap-2 text-green-600 bg-green-50 p-4 rounded-md">
+          <div className="flex items-center justify-center gap-2 text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 p-4 rounded-md">
             <CheckCircle2 className="h-5 w-5" />
             <span>You have already voted in this poll.</span>
           </div>
           {previousVote && (
-            <div className="text-center text-gray-600">
-              Your previous vote: <span className="font-medium">{previousVote}</span>
+            <div className="text-center text-gray-600 dark:text-gray-400">
+              Your previous vote: <span className="font-medium text-gray-800 dark:text-gray-200">{previousVote}</span>
             </div>
           )}
           <Button
@@ -159,7 +159,7 @@ export function VotingForm({ pollId }: VotingFormProps) {
         ))}
       </div>
       {error && (
-        <div className="mt-4 text-center text-red-500 bg-red-50 p-3 rounded-md">{error}</div>
+        <div className="mt-4 text-center text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30 p-3 rounded-md">{error}</div>
       )}
       <Button
         className="w-full mt-6 gap-2"

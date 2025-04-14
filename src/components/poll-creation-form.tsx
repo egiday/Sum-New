@@ -66,7 +66,7 @@ export function PollCreationForm() {
     <Card className="p-4 sm:p-6">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
-          <label htmlFor="question" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="question" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Question
           </label>
           <Input
@@ -80,7 +80,7 @@ export function PollCreationForm() {
         </div>
 
         <div className="space-y-4">
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Options
           </label>
           <div className="space-y-3">
@@ -120,7 +120,7 @@ export function PollCreationForm() {
         </div>
 
         {error && (
-          <div className="text-red-500 text-sm bg-red-50 p-3 rounded-md">{error}</div>
+          <div className="text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30 p-3 rounded-md text-sm">{error}</div>
         )}
 
         <Button
