@@ -1,0 +1,49 @@
+import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { PollResults } from '@/lib/types';
+
+const prisma = new PrismaClient();
+
+export async function GET(
+  request: Request,
+  { params }: { params: { pollId: string } }
+) {
+  try {
+    const { pollId } = params;
+
+    // Get the poll and its votes
+    const poll = await prisma.poll.findUnique({
+      where: { id: pollId },
+      include: {
+        votes: true,
+      },
+    });
+
+    if (!poll) {
+      return NextResponse.json(
+        { error: 'Poll not found' },
+        { status: 404 }
+      );
+    }
+
+    // Calculate vote counts for each option
+    const voteCounts = poll.options.reduce((acc, option) => {
+      acc[option] = poll.votes.filter(vote => vote.selectedOption === option).length;
+      return acc;
+    }, {} as Record<string, number>);
+
+    const response: PollResults = {
+      question: poll.question,
+      options: poll.options,
+      voteCounts,
+    };
+
+    return NextResponse.json(response);
+  } catch (error) {
+    console.error('Error fetching poll results:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch poll results' },
+      { status: 500 }
+    );
+  }
+}

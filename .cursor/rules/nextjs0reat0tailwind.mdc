@@ -1,0 +1,76 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# AI Coding Assistant Rules (FastPoll Project)  
+
+## Core Expertise & General Approach  
+
+- You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, Tailwind CSS, and Framer Motion.  
+- Your primary goal is to assist in building the "FastPoll" application based on the provided checklist.  
+
+## Workflow & Checklist Integration  
+
+- **Checklist Adherence (FastPoll MVP):** You will be given tasks corresponding to specific item numbers from the "FastPoll MVP - Development Checklist". Please adhere to the following workflow:  
+    1.  Focus *only* on the single checklist item requested.  
+    2.  Implement the requested checklist item according to all the other rules specified in this document.  
+    3.  **Crucially: After providing the code or completing the task for that single item, explicitly state which checklist item number and description you believe you have just completed.** (e.g., "Completed: `[ ] 1.4: Implement API Endpoint - Create Poll`").  
+    4.  Await confirmation or the next checklist item instruction. **Do not** proceed to the next item on the checklist until explicitly asked to do so. 
+    5.  the checklist is [Checklist.txt](mdc:Checklist.txt) 
+    6.  when done with task return to checklist and cross off
+
+## Code Style and Structure  
+
+- Write concise, technical TypeScript code with accurate examples.  
+- Use functional and declarative programming patterns; avoid classes unless absolutely necessary for a specific library integration.  
+- Prefer iteration and modularization over code duplication. Use helper functions for repeated logic.  
+- Use descriptive variable names with auxiliary verbs where appropriate (e.g., `isLoading`, `hasError`, `pollOptions`).  
+- Structure files logically: exported component (if applicable), related subcomponents or helpers, static content/constants, type/interface definitions at the bottom or in a separate `types.ts` if complex.  
+
+## Naming Conventions  
+
+- All components should go in `src/components` and be named using kebab-case (e.g., `poll-creation-form.tsx`).  
+- Use lowercase with dashes for directories (e.g., `src/components/auth-wizard`, `src/app/poll/[pollId]`).  
+- Favor named exports for components, types, and utilities. `export function MyComponent() {...}` or `export const myUtil = () => {...}`.  
+
+## TypeScript Usage  
+
+- Use TypeScript for all code (`.ts` or `.tsx`).  
+- Prefer interfaces (`interface`) over type aliases (`type`) for defining object shapes or component props, but use `type` for unions, intersections, or simple aliases.  
+- Avoid `enums`; use string literal unions or simple objects/maps instead (e.g., `type Status = 'idle' | 'loading' | 'success';` or `const STATUS = { IDLE: 'idle', LOADING: 'loading' } as const;`).  
+- Use functional components with clearly defined TypeScript interfaces for props. `function MyComponent(props: MyComponentProps) {...}`.  
+
+## Syntax and Formatting  
+
+- Use the `function` keyword for named pure functions/components. Use arrow functions `() => {}` for callbacks, anonymous functions, or when preserving `this` context (less common in React functional components).  
+- Avoid unnecessary curly braces in conditionals or JSX attributes where possible. Use concise syntax for simple statements.  
+- Write declarative JSX. Keep logic outside of the JSX markup where feasible (use variables, helper functions).  
+
+## UI and Styling  
+
+- Use **Shadcn UI** components (`import { Button } from '@/components/ui/button';`) as the primary UI library. Adhere to its conventions.  
+- Use **Tailwind CSS** for all styling. Apply utility classes directly in the JSX.  
+- Implement responsive design using Tailwind's breakpoint modifiers (e.g., `md:flex`, `lg:text-xl`). Adopt a mobile-first approach where appropriate.  
+
+## Performance Optimization & Next.js Conventions  
+
+- Minimize the use of `'use client'`. Keep components as React Server Components (RSC) by default. Only use `'use client'` for components requiring interactivity (event handlers, hooks like `useState`, `useEffect`). Keep client components small and push them down the component tree.  
+- When using client components that fetch data or have potentially long render times, consider wrapping them in `<Suspense>` with an appropriate fallback UI.  
+- Use `next/dynamic` for dynamic loading of non-critical components or large libraries, especially within client components.  
+- Optimize images: If using images beyond placeholders, prefer WebP format, include `width` and `height` attributes, and consider `next/image` for automatic optimization and lazy loading.  
+- **Placeholder Images:** When creating placeholder images (e.g., for testing or initial structure), use `https://placekitten.com/{width}/{height}`.  
+- Use `nuqs` or standard React state/context for managing client-side state. Prefer URL state (`nuqs` or Next.js router) for state that should be bookmarkable or shareable.  
+- Strive to optimize Core Web Vitals (LCP, CLS, FID/INP).  
+- Strictly follow Next.js documentation recommendations for Data Fetching (Server Actions, Route Handlers, `fetch` extensions), Rendering (RSC vs Client Components), Caching, and Routing (App Router conventions).  
+
+## Project Structure  
+
+- Place both the `/app` and `/components` folders under a `/src` directory.  
+- Organize components within `src/components`:  
+    - `/ui`: Contains general-purpose, reusable UI elements (often wrappers or compositions of Shadcn components).  
+    - `/forms`: Components specifically related to form inputs and handling.  
+    - `/layout`: Components defining the overall page structure (Navbar, Footer, Sidebars).  
+    - **By Feature:** For components tightly coupled to a specific feature (e.g., `src/components/poll-creation`, `src/components/poll-voting`), create feature-specific folders.  
+- **Private Components:** For components used *only* within a specific route segment, you can optionally create a `_components` folder within that `src/app/...` directory (e.g., `src/app/poll/[pollId]/_components/voting-options.tsx`). This signifies they are not intended for reuse elsewhere.  
+- Shared, reusable components belong in `src/components`.  
