@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from "@/components/theme-provider"
+import { Navbar } from '@/components/navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,7 +26,15 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="min-h-screen bg-gradient-to-br from-background via-background to-background/90 flex flex-col">
-            {children}
+            <Navbar />
+            <main className="flex-1 flex flex-col">
+              {children}
+            </main>
+            <footer className="py-4 text-center text-sm text-muted-foreground">
+              <div className="container mx-auto px-4">
+                &copy; {new Date().getFullYear()} FastPoll. Simple. Fast. Beautiful.
+              </div>
+            </footer>
           </div>
         </ThemeProvider>
       </body>

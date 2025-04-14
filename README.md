@@ -1,24 +1,63 @@
-# FastPoll - Quick Anonymous Group Decisions
+# FastPoll - Beautiful, Simple, Fast Polling
 
-FastPoll is a lightweight, anonymous polling application designed for quick group decisions. Create instant polls and share them with your group - no sign-up required!
+FastPoll is a modern, elegant polling application designed for quick group decisions with an Apple-inspired interface. Create gorgeous polls and share them with anyone - no sign-up required!
+
+![FastPoll Hero](https://placekitten.com/1200/630)
 
 ## Features
 
-- Create polls instantly with multiple options
-- Share via simple links
-- Anonymous voting
-- Real-time results
-- Mobile-friendly interface
-- No registration required
+- ✨ Modern, elegant UI with smooth animations
+- 🌓 Light and dark mode support
+- 📱 Fully responsive design that works on all devices
+- 🔗 Share polls with simple links
+- 🔒 Anonymous voting with local storage tracking
+- 📊 Real-time results with beautiful visualizations
+- ⚡ Lightning-fast performance with Next.js App Router
+- 🛠️ No registration or login required
+
+## UI/UX Highlights
+
+- **Intuitive Poll Creation**: Simple, guided interface for creating polls
+- **Animated Components**: Smooth transitions and micro-interactions throughout
+- **Accessibility**: Designed with a11y best practices
+- **Copy to Clipboard**: One-click sharing functionality
+- **Smart Form Behaviors**: Auto-adding options as you type
+- **Helpful Tooltips**: Contextual help where you need it
+- **Mobile-First Design**: Perfect experience on any device
 
 ## Tech Stack
 
-- Next.js 14 (App Router)
-- TypeScript
-- Prisma ORM
-- PostgreSQL
-- Tailwind CSS
-- Shadcn UI
+- **Frontend**:
+
+  - Next.js 14 (App Router)
+  - React with TypeScript
+  - Tailwind CSS for styling
+  - Framer Motion for animations
+  - Shadcn UI components
+  - Lucide icons
+
+- **Backend**:
+  - Next.js API routes
+  - Prisma ORM
+  - PostgreSQL database
+
+## Screenshots
+
+### Home Page
+
+![Home Page](https://placekitten.com/800/450)
+
+### Poll Creation
+
+![Poll Creation](https://placekitten.com/800/451)
+
+### Voting Interface
+
+![Voting Interface](https://placekitten.com/800/452)
+
+### Results View
+
+![Results View](https://placekitten.com/800/453)
 
 ## Local Development Setup
 
@@ -87,6 +126,29 @@ Required environment variables:
 
 - `DATABASE_URL`: PostgreSQL connection string
 
+## UI Customization
+
+The application uses a customized Tailwind CSS theme with Apple-inspired design elements:
+
+- Custom color palette with vibrant primary colors
+- Glass-morphism effects for cards and buttons
+- Sophisticated animations and transitions
+- Responsive design breakpoints
+
+You can modify the design by editing:
+
+- `tailwind.config.ts` - For theme colors and basic settings
+- `src/app/globals.css` - For global CSS variables and utilities
+- Component-specific styles in their respective files
+
 ## License
 
 MIT License - see LICENSE file for details
+
+## Acknowledgements
+
+- [Shadcn UI](https://ui.shadcn.com/) for the component system
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Framer Motion](https://www.framer.com/motion/) for animations
+- [Lucide Icons](https://lucide.dev/) for beautiful icons
+- [Next.js](https://nextjs.org/) for the React framework
