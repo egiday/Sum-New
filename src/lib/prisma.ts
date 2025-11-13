@@ -8,7 +8,7 @@ const prismaClientSingleton = () => {
   return new PrismaClient({
     datasources: {
       db: {
-        url: process.env.DATABASE_URL
+        url: process.env.DATABASE_URL || 'postgresql://user:password@localhost:5432/fastpoll?schema=public'
       }
     }
   });

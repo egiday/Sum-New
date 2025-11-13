@@ -103,7 +103,7 @@ export function PollCreationForm() {
               Create a New Poll
             </CardTitle>
             <CardDescription className="text-center text-muted-foreground">
-              It's quick, easy, and free - no account needed
+              It&apos;s quick, easy, and free - no account needed
             </CardDescription>
           </CardHeader>
 

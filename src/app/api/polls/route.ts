@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { CreatePollRequest, CreatePollResponse } from '@/lib/types';
-import { nanoid } from 'nanoid';
+import { getCurrentUser } from '@/lib/auth-helpers';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body: CreatePollRequest = await request.json();
     const { question, options } = body;
@@ -15,10 +15,14 @@ export async function POST(request: Request) {
       );
     }
 
+    // Get current user if authenticated (optional)
+    const authUser = await getCurrentUser(request);
+
     const poll = await prisma.poll.create({
       data: {
         question,
         options,
+        userId: authUser?.userId || null,
       },
     });
 
