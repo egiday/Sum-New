@@ -2,13 +2,38 @@
 
 import * as React from 'react'
 import Link from 'next/link'
-import { Home, Moon, Sun } from 'lucide-react'
+import { Home, Moon, Sun, User, LogOut } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
+import { useAuth } from '@/lib/auth-context'
 
 export function Navbar() {
   const { theme, setTheme } = useTheme()
+  const { user, loading, logout } = useAuth()
+  const [showUserMenu, setShowUserMenu] = React.useState(false)
+  const menuRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowUserMenu(false)
+      }
+    }
+
+    if (showUserMenu) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showUserMenu])
+
+  const handleLogout = async () => {
+    await logout()
+    setShowUserMenu(false)
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl">
@@ -31,7 +56,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link href="/">
               <Button variant="ghost" size="icon" className="rounded-full">
@@ -53,6 +78,61 @@ export function Navbar() {
               <span className="sr-only">Toggle theme</span>
             </Button>
           </motion.div>
+
+          {!loading && (
+            <>
+              {user ? (
+                <div className="relative" ref={menuRef}>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => setShowUserMenu(!showUserMenu)}
+                      className="rounded-full"
+                    >
+                      <User className="h-5 w-5" />
+                      <span className="sr-only">User menu</span>
+                    </Button>
+                  </motion.div>
+
+                  {showUserMenu && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="absolute right-0 mt-2 w-56 rounded-lg border border-border bg-background shadow-lg"
+                    >
+                      <div className="p-3 border-b border-border">
+                        <p className="text-sm font-medium">{user.name || 'User'}</p>
+                        <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                      </div>
+                      <div className="p-1">
+                        <button
+                          onClick={handleLogout}
+                          className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-muted rounded"
+                        >
+                          <LogOut className="h-4 w-4" />
+                          Logout
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Link href="/login">
+                    <Button variant="ghost" size="sm">
+                      Login
+                    </Button>
+                  </Link>
+                  <Link href="/register">
+                    <Button size="sm">
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </header>

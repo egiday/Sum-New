@@ -13,7 +13,8 @@ FastPoll is a modern, elegant polling application designed for quick group decis
 - 🔒 Anonymous voting with local storage tracking
 - 📊 Real-time results with beautiful visualizations
 - ⚡ Lightning-fast performance with Next.js App Router
-- 🛠️ No registration or login required
+- 👤 **Optional user accounts** - Register and login to manage your polls
+- 🛠️ No registration required to create polls (but you can if you want!)
 
 ## UI/UX Highlights
 
@@ -24,6 +25,16 @@ FastPoll is a modern, elegant polling application designed for quick group decis
 - **Smart Form Behaviors**: Auto-adding options as you type
 - **Helpful Tooltips**: Contextual help where you need it
 - **Mobile-First Design**: Perfect experience on any device
+
+## Authentication
+
+FastPoll now includes optional user authentication! Users can:
+- Register for an account with email and password
+- Login to access their account
+- View their profile in a beautiful dropdown menu
+- Associate polls with their account
+
+**The best part?** Authentication is completely optional - you can still create polls without signing up, maintaining the original FastPoll experience. See [AUTHENTICATION.md](./AUTHENTICATION.md) for complete documentation.
 
 ## Tech Stack
 
@@ -40,6 +51,7 @@ FastPoll is a modern, elegant polling application designed for quick group decis
   - Next.js API routes
   - Prisma ORM
   - PostgreSQL database
+  - JWT authentication with bcryptjs
 
 ## Screenshots (Imgur images)
 
@@ -125,6 +137,9 @@ FastPoll is a modern, elegant polling application designed for quick group decis
 Required environment variables:
 
 - `DATABASE_URL`: PostgreSQL connection string
+- `JWT_SECRET` (optional): Secret key for JWT tokens. Defaults to a development key if not set, but **must be changed in production**
+
+See [AUTHENTICATION.md](./AUTHENTICATION.md) for detailed authentication documentation.
 
 ## UI Customization
 

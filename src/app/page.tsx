@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { PollCreationForm } from '@/components/poll-creation-form'
 import { motion } from 'framer-motion'

@@ -187,7 +187,7 @@ export function PollResults({ pollId }: PollResultsProps) {
                 </>
               ) : (
                 <>
-                  It's a tie between <span className="font-semibold text-foreground">{winningOptions.length} options</span> with {maxVotes} votes each.
+                  It&apos;s a tie between <span className="font-semibold text-foreground">{winningOptions.length} options</span> with {maxVotes} votes each.
                 </>
               )}
             </div>
