@@ -95,8 +95,8 @@ export function PollResults({ pollId }: PollResultsProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Card glass className="w-full overflow-hidden border-[0.5px] shadow-xl">
-        <CardHeader className="pb-4 pt-6 px-6">
+      <Card glass className="w-full overflow-hidden border-[0.5px] shadow-xl hover-lift">
+        <CardHeader className="pb-4 pt-6 px-6 bg-gradient-to-br from-primary/5 to-transparent">
           <CardTitle className="text-xl sm:text-2xl text-center font-medium">{results.question}</CardTitle>
         </CardHeader>
         <CardContent className="pt-2 pb-6 px-6">
@@ -158,13 +158,20 @@ export function PollResults({ pollId }: PollResultsProps) {
                     </div>
                     <div className="h-10 bg-muted/30 backdrop-blur-sm rounded-xl overflow-hidden border border-border/50 relative">
                       <motion.div
-                        className={`h-full bg-gradient-to-r ${barColors[barColor]} backdrop-blur-sm rounded-xl`}
+                        className={`h-full bg-gradient-to-r ${barColors[barColor]} backdrop-blur-sm rounded-xl relative overflow-hidden`}
                         style={{ width: `${percentage}%` }}
                         aria-label={`${option}: ${voteCount} votes, ${percentage}%`}
                         initial={{ width: 0 }}
                         animate={{ width: `${percentage}%` }}
                         transition={{ duration: 1, delay: 0.2 + (index * 0.1), ease: "easeOut" }}
-                      />
+                      >
+                        <motion.div
+                          className="absolute inset-0 shimmer"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.5 + (index * 0.1) }}
+                        />
+                      </motion.div>
                       <div className="absolute inset-0 flex items-center justify-center">
                         <span className={`text-sm font-medium ${percentage > 35 ? 'text-white' : 'text-foreground'}`}>
                           {percentage}%

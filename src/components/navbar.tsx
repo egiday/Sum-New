@@ -11,13 +11,14 @@ export function Navbar() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl shadow-sm">
       <div className="container flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
           <motion.div
             className="h-9 w-9 rounded-lg bg-gradient-to-tr from-primary via-[#9F7AEA] to-[#4FD1C5] p-[1px] shadow-md"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             <div className="h-full w-full bg-background rounded-lg flex items-center justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
@@ -26,7 +27,7 @@ export function Navbar() {
               </svg>
             </div>
           </motion.div>
-          <span className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-[#7e22ce] hidden sm:inline-block">
+          <span className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#9F7AEA] to-[#7e22ce] hidden sm:inline-block animate-gradient-x">
             FastPoll
           </span>
         </Link>
