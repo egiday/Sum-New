@@ -24,6 +24,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const refreshUser = async () => {
+    // Only fetch user on client side
+    if (typeof window === 'undefined') {
+      return;
+    }
+    
     try {
       const response = await fetch('/api/auth/me');
       if (response.ok) {
@@ -39,7 +44,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    refreshUser().finally(() => setLoading(false));
+    // Only run on client side
+    if (typeof window !== 'undefined') {
+      refreshUser().finally(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   const login = async (email: string, password: string) => {
