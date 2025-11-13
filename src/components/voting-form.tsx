@@ -250,8 +250,8 @@ export function VotingForm({ pollId }: VotingFormProps) {
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className="w-full"
     >
-      <Card className="w-full overflow-hidden border-[0.5px] shadow-xl bg-card/95 backdrop-blur-xl">
-        <CardHeader className="pb-4 pt-6 px-6">
+      <Card className="w-full overflow-hidden border-[0.5px] shadow-xl bg-card/95 backdrop-blur-xl hover-lift">
+        <CardHeader className="pb-4 pt-6 px-6 bg-gradient-to-br from-primary/5 to-transparent">
           <CardTitle className="text-xl sm:text-2xl text-center font-medium">{pollData.question}</CardTitle>
           <CardDescription className="text-center mt-2">Select one of the options below</CardDescription>
         </CardHeader>
@@ -273,8 +273,8 @@ export function VotingForm({ pollId }: VotingFormProps) {
                     variant={selectedOption === option ? "default" : "outline"}
                     className={`w-full justify-start text-left h-auto py-5 px-5 text-base rounded-xl transition-all duration-300 relative overflow-hidden ${
                       selectedOption === option
-                        ? "bg-primary text-primary-foreground"
-                        : "hover:bg-muted/50"
+                        ? "bg-gradient-to-r from-primary via-[#9F7AEA] to-[#4FD1C5] text-primary-foreground shadow-lg"
+                        : "hover:bg-muted/50 hover:border-primary/50 hover:scale-[1.02]"
                     }`}
                     onClick={() => setSelectedOption(option)}
                   >
@@ -319,7 +319,7 @@ export function VotingForm({ pollId }: VotingFormProps) {
         </CardContent>
         <CardFooter className="pt-0 pb-6 px-6 flex flex-col gap-3">
           <Button
-            className="w-full gap-2 h-12 rounded-xl"
+            className="w-full gap-2 h-12 rounded-xl bg-gradient-to-r from-primary via-[#9F7AEA] to-[#4FD1C5] hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
             size="lg"
             onClick={handleVote}
             disabled={!selectedOption || isSubmitting}

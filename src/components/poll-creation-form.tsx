@@ -96,10 +96,21 @@ export function PollCreationForm() {
       className="w-full"
     >
       <TooltipProvider>
-        <Card className="w-full overflow-hidden border-[0.5px] shadow-xl bg-card/95 backdrop-blur-xl">
-          <CardHeader className="pb-4 pt-6 px-6">
+        <Card className="w-full overflow-hidden border-[0.5px] shadow-xl bg-card/95 backdrop-blur-xl hover-lift transition-all duration-300">
+          <CardHeader className="pb-4 pt-6 px-6 bg-gradient-to-br from-primary/5 to-transparent">
             <CardTitle className="text-xl sm:text-2xl text-center font-medium flex items-center justify-center gap-2">
-              <Sparkles className="h-5 w-5 text-primary" />
+              <motion.div
+                animate={{
+                  rotate: [0, 5, -5, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 3,
+                }}
+              >
+                <Sparkles className="h-5 w-5 text-primary" />
+              </motion.div>
               Create a New Poll
             </CardTitle>
             <CardDescription className="text-center text-muted-foreground">
@@ -262,7 +273,7 @@ export function PollCreationForm() {
             <Button
               type="submit"
               form="poll-creation-form"
-              className="w-full text-base font-medium py-3 h-12 rounded-xl"
+              className="w-full text-base font-medium py-3 h-12 rounded-xl bg-gradient-to-r from-primary via-[#9F7AEA] to-[#4FD1C5] hover:shadow-xl transition-all duration-300 hover:scale-[1.02] ripple"
               size="lg"
               disabled={isSubmitting}
             >
